@@ -1,0 +1,46 @@
+<div>
+<table class="bordered">
+    <thead >
+      <tr>
+          <th>
+              PLANT
+          </th>
+          <th>
+              SHOP
+          </th>
+          <th>
+              EQUIPMENT
+          </th>
+          <th>
+              CATHODE
+          </th>
+          <th>
+              CATEGORY
+          </th>
+          <th>
+              MATERIALTYPE
+          </th>
+          <th *ngFor="let item of inDaysPeriod" >{{item}}</th>
+      </tr>
+
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of inDataTable; let last = last; let idx = index">
+          <td>{{item.PLANT}}</td>
+          <td>{{item.SHOP}}</td>
+          <td>{{item.EQUIPMENT}}</td>
+          <td>{{item.CATHODE | uppercase}}</td>
+          <td>{{item.CATEGORY}}</td>
+          <td>{{item.MATERIALTYPE}}</td>
+          <td *ngFor="let day of inDaysPeriod; let i = index">
+              <app-modify-dialog
+                inDisplayIndex={{i}} [inRows]="item" [inDay]="day">
+              </app-modify-dialog>
+          </td>
+          <td *ngIf="last">{{ngForCallback()}}</td>
+      </tr>
+      </tbody>
+
+</table>
+</div>
+

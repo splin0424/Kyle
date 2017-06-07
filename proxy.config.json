@@ -1,0 +1,14 @@
+{
+  "/opendata": {
+    "target": "http://data.taipei",
+    "secure": false
+  },
+  "/api": {
+    "target": "http://localhost:33117",
+    "secure": false
+  },
+  "/TargetLifeAPI": {
+    "target": "http://10.56.195.221:8081",
+    "secure": false
+  }
+}

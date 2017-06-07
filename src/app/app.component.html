@@ -1,0 +1,186 @@
+<div class="layout-container">
+<div class="sidebar-layout-obfuscator"></div>
+      <!-- Main section-->
+      <main class="main-container">
+        <!-- Page content-->
+        <section>
+          <ul id="myTabs" role="tablist" class="nav nav-tabs nav-justified">
+            <li role="presentation" class="active"><a id="home-tab" href="#home" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">TF Maintain</a></li>
+            <li role="presentation"><a id="profile-tab" href="#profile" role="tab" data-toggle="tab" aria-controls="profile">&nbsp;</a></li>
+            <li role="presentation" class="dropdown"><a id="profile-tab" href="#messages" role="tab" data-toggle="tab" aria-controls="messages">&nbsp;</a></li>
+          </ul>
+          <div id="myTabContent" class="tab-content text-center">
+            <div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade in active">
+
+
+
+<!--<pre>
+  defaultQueryParams = {{ defaultQueryParams | json }}
+  f.value = {{ f.value | json }}
+  f.invalid = {{ f.invalid | json }}
+  f.dirty = {{ f.dirty | json }}
+  f.pristine = {{ f.pristine | json }}
+  f.touched = {{ f.touched | json }}
+  f.untouched = {{ f.untouched | json }}
+  </pre>-->
+
+              <section>
+                <div class="container-fluid">
+                  <!-- UISELECT-->
+                  <div class="card query-card">
+                    <div class="card-body query-card-body">
+                      <form (ngSubmit)="doSubmit(f)" class="form-horizontal" #f="ngForm">
+                        <div class="form-horizontal">
+                          <div class="form-group">
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">廠區</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-select id="select1-1" class="input-textbox"
+                                  [ngModel]="defaultQueryParams.plant" name="plant" #fplant="ngModel" required>
+                                <md-option value="T000">T000</md-option>
+                                <md-option value="T001">T001</md-option>
+                                <md-option value="T002">T002</md-option>
+                              </md-select>
+                              <label id="confirm_match-error" class="error custom-error"
+                                      [class.hidden]="!hasBeenQuery || (fplant.errors == null)" >{{fplant.errors | json}}</label>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">Shop</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-select id="select1-2" class="input-textbox"
+                                  [ngModel]="defaultQueryParams.shop" name="shop" #fshop="ngModel" required>
+                                <md-option value="ARRAY">ARRAY</md-option>
+                                <md-option value="CF">CF</md-option>
+                              </md-select>
+                              <label id="confirm_match-error" class="error custom-error"
+                                      [class.hidden]="!hasBeenQuery || (fshop.errors == null)" >{{fshop.errors | json}}</label>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">Category</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-select id="select1-3" class="input-textbox"
+                                  [ngModel]="defaultQueryParams.category" name="category" #fcategory="ngModel" required>
+                                <md-option value="Target">Target</md-option>
+                                <md-option value="Mask">Mask</md-option>
+                              </md-select>
+                              <label id="confirm_match-error" class="error custom-error"
+                                      [class.hidden]="!hasBeenQuery || (fcategory.errors == null)" >{{fcategory.errors | json}}</label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">日期</p>
+                            </div>
+                            <div class="col-md-3 col-sm-8">
+                              <app-date-range-picker (outPeriod)="onDateRangePickerChanged($event)">
+                                app-date-range-picker loading...</app-date-range-picker>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">Equipment</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-input-container class="example-full-width">
+                                <input mdInput class="input-textbox"
+                                    [ngModel]="defaultQueryParams.equipment" name="equipment" #fequipment="ngModel">
+                              </md-input-container>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">Cathode</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-input-container class="example-full-width">
+                                <input mdInput class="input-textbox"
+                                    [ngModel]="defaultQueryParams.cathode" name="cathode" #fcathode="ngModel">
+                              </md-input-container>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">Vedor</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-input-container class="example-full-width">
+                                <input mdInput class="input-textbox"
+                                    [ngModel]="defaultQueryParams.vendor" name="vendor" #fvendor="ngModel">
+                              </md-input-container>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">Material Type</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-input-container class="example-full-width">
+                                <input mdInput class="input-textbox"
+                                    [ngModel]="defaultQueryParams.materialtype" name="materialtype" #fmaterialtype="ngModel">
+                              </md-input-container>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">BP/Mask No.</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-input-container class="example-full-width">
+                                <input mdInput class="input-textbox"
+                                    [ngModel]="defaultQueryParams.bp_mask_no" name="bp_mask_no" #fbpmaskno="ngModel">
+                              </md-input-container>
+                            </div>
+                            <div class="col-md-2 col-sm-4">
+                              <p class="m0">PN</p>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                              <md-input-container class="example-full-width">
+                                <input mdInput class="input-textbox"
+                                    [ngModel]="defaultQueryParams.pn" name="pn" #fpn="ngModel">
+                              </md-input-container>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-md-2 col-sm-12">
+                              <button class="btn btn-oval btn-primary ripple"
+                                id="btnQuery" (click)="doQuery(f)">Query</button>
+                              <button class="btn btn-oval btn-primary ripple" id="btnReset" (click)="doReset(f)">Reset</button>
+                            </div>
+                          </div>
+                          <div [class.hidden]="pageOnGoing===false"><md-progress-bar mode="indeterminate" ></md-progress-bar></div>
+                          <button id="btnPBarStop" style="display: none;" (click)="btnPBarStop()"></button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- END UISELECT-->
+                  <div class="card">
+                    <div class="card-body div-scrollbar">
+
+
+                      <app-main-table [inDataTable]="dataTable" [inDaysPeriod]="daysPeriod"
+                        (outTableFinished)="onTableFinished()"></app-main-table>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+
+
+
+
+
+            </div>
+            <!--<div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade">
+              <app-testcomp [inDataTable]="dataTable" [inDaysPeriod]="daysPeriod"></app-testcomp>
+            </div>
+            <div id="messages" role="tabpanel" aria-labelledby="messages-tab" class="tab-pane fade">
+              <h4>Messages view</h4>
+            </div>-->
+          </div>
+        </section>
+        <!-- Page footer-->
+        <!--<footer><span>2017 - Target Life app.</span></footer>-->
+      </main>
+    </div>
+

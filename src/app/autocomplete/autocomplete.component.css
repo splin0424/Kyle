@@ -1,0 +1,17 @@
+.input-textbox{
+  width:120%;
+}
+
+.option{
+  font-size: 12px;
+}
+
+.custom-error{
+  color: red;
+}
+
+.hidden{
+  display: none;
+}
+
+

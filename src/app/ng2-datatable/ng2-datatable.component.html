@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+
+
+        <div class="panel panel-default">
+
+            <table class="table table-striped" [mfData]="inDataTable | dataFilter : filterQuery"
+                    #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                    [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                <thead>
+                <tr>
+                    <th style="width: 10%">
+                        PLANT
+                    </th>
+                    <th style="width: 20%">
+                        SHOP
+                    </th>
+                    <th style="width: 40%">
+                        EQUIPMENT
+                    </th>
+                    <th style="width: 10%">
+                        CATHODE
+                    </th>
+                    <th style="width: 20%">
+                        CATEGORY
+                    </th>
+                    <th style="width: 20%">
+                        MATERIALTYPE
+                    </th>
+                    <th *ngFor="let item of inDaysPeriod">{{item}}</th>
+                </tr>
+
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of inDataTable">
+                    <td>{{item.PLANT}}</td>
+                    <td>{{item.SHOP}}</td>
+                    <td>{{item.EQUIPMENT}}</td>
+                    <td>{{item.CATHODE | uppercase}}</td>
+                    <td>{{item.CATEGORY}}</td>
+                    <td>{{item.MATERIALTYPE}}</td>
+                    <td *ngFor="let day of inDaysPeriod; let i = index">
+                        <app-modify-dialog
+                          inDisplayIndex={{i}} [inRows]="item" [inDay]="day">
+                        </app-modify-dialog>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

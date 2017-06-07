@@ -1,0 +1,35 @@
+
+<div [formGroup]="form">
+
+<div class="mda-form-group">
+<div class="mda-form-control">
+<md-input-container>
+  <input mdInput placeholder="{{inName}}" class="input-textbox"
+  [(ngModel)]="inCurrentOption"
+  (ngModelChange)="onValueChange($event)"
+  [mdAutocomplete]="auto" [formControl]="stateCtrl" formControlName="fpn" required>
+</md-input-container>
+</div>
+<label id="confirm_match-error" class="error custom-error"
+  [class.hidden]="form.controls.fpn.untouched || form.controls.fpn.valid" >
+  {{form.controls.fpn.errors | json}}</label>
+</div>
+
+
+
+
+<md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFn">
+  <md-option *ngFor="let option of filteredOptions | async" class="option"
+        [value]="option">
+    {{ option.PN }} : {{option.VENDOR}}
+  </md-option>
+</md-autocomplete>
+
+<!--<pre> form.controls.fpn.errors = {{ form.controls.fpn.errors | json }} </pre>
+<pre> form.controls.fpn.invalid = {{ form.controls.fpn.invalid | json }} </pre>
+<pre> form.controls.fpn.valid = {{ form.controls.fpn.valid | json }} </pre>
+<pre> form.controls.fpn.untouched = {{ form.controls.fpn.untouched | json }} </pre>-->
+</div>
+
+
+

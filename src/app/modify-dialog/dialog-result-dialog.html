@@ -1,0 +1,153 @@
+<!--<form class="form-horizontal" [formGroup]="form">
+    <div  md-dialog-content>
+      <fieldset>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td colspan=2 style="width:100%;">
+            <app-autocomplete [inName]="'料號'"
+                  [inOptions]="dataTable" [inCurrentOption]="detail.pn"
+                  (outSelectedOption)="checkVendor($event)"
+                  (outInvalid)="checkInvalid($event)"></app-autocomplete></td>
+        </tr></table>
+      </fieldset>
+      <fieldset>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container>
+            <input mdInput [ngModel]="detail?.vendor" placeholder="供應商" formControlName="fvendor">
+          </md-input-container></td>
+        </tr></table>
+      </fieldset>
+      <fieldset>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container>
+            <input mdInput [ngModel]="detail?.category" placeholder="類別" formControlName="fcategory"  >
+          </md-input-container></td>
+        </tr></table>
+      </fieldset>
+      <fieldset>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container>
+            <input mdInput [ngModel]="detail?.bp_mask_no" placeholder="BP/Mask No." name="bp_mask_no" formControlName="fbp_mask_no" >
+          </md-input-container></td>
+          <td><pre> form.controls.fbp_mask_no.errors = {{form.controls.fbp_mask_no.errors | json}} </pre></td>
+        </tr></table>
+      </fieldset>
+      <fieldset>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container>
+              <input mdInput type="number" [ngModel]="detail?.qty" placeholder="數據" formControlName="fqty">
+          </md-input-container></td>
+          <td>前一天：<input type="text" [ngModel]="detail.pre_qty" onfocus="this.blur()" style="border:none;color:green;width:100%;" formControlName="fpre_qty" > </td>
+            <pre>
+              form.controls.fqty.errors = {{ form.controls.fqty.errors | json }}
+              form.controls.fqty.invalid = {{form.controls.fqty.invalid | json}}
+            </pre>
+        </tr></table>
+      </fieldset>
+      <fieldset>
+        <table class="example-full-width" cellspacing="0"><tr>
+          <td><md-input-container>
+            <textarea mdInput [ngModel]="detail?.remark" placeholder="備註" formControlName="fremark" required="{{form.controls.fqty.invalid}}"></textarea>
+          </md-input-container></td>
+          form.controls.fremark.errors = {{ form.controls.fremark.errors | json }}
+        </tr></table>
+      </fieldset>
+    </div>
+
+    <div md-dialog-actions>
+      <button type="button" md-button (click)="cancel()">Cancel</button>
+      <button type="submit" md-button
+      [disabled]="form.controls.fremark.invalid"
+      [ngStyle]="{'color': pnInvalid || form.controls.fremark.invalid ? '#ff0000' : ''}"
+      (click)="save()" >Save</button>
+    </div>
+</form>-->
+
+<!--<pre>
+detail = {{ detail | json }}
+form.value = {{ form.value | json }}
+form.valid = {{ form.valid | json }}
+form.invalid = {{ form.invalid | json }}
+form.dirty = {{ form.dirty | json }}
+form.pristine = {{ form.pristine | json }}
+form.touched = {{ form.touched | json }}
+form.untouched = {{ form.untouched | json }}</pre>-->
+<form id="form-register" name="registerForm" novalidate="" class="form-validate" [formGroup]="form">
+  <!-- START panel-->
+  <div class="card card-default">
+    <div class="card-heading custom-card"><small class="pull-right">* Required fields</small>
+      <div class="panel-title"><input type="text" value="Modify Dialog" onfocus="this.blur()" class="dialog-title" ></div>
+    </div>
+    <div class="card-body pt0 pb0">
+              <input [ngModel]="detail?.pn" formControlName="fpn_hide" style="display:none;">
+              <input [ngModel]="detail?.pre_pn" formControlName="fpre_pn_hide" style="display:none;">
+              <input [ngModel]="detail?.pre_vendor" formControlName="fpre_vendor_hide" style="display:none;">
+          <app-autocomplete [inName]="'料號'"
+                  [inOptions]="dataTable" [inCurrentOption]="detail.pn"
+                  (outSelectedOption)="checkVendor($event)"
+                  (outInvalid)="checkInvalid($event)"></app-autocomplete>
+          <div class="mda-form-group">
+            <div class="mda-form-control">
+              <md-input-container>
+                <input mdInput [ngModel]="detail?.vendor" placeholder="供應商" formControlName="fvendor" required readonly>
+              </md-input-container>
+            </div>
+            <label id="confirm_match-error" class="error custom-error"
+              [class.hidden]="form.controls.fvendor.value" >{{fvendor_error}}</label>
+          </div>
+          <div class="mda-form-group">
+            <div class="mda-form-control">
+              <md-input-container>
+                <input mdInput [ngModel]="detail?.category" placeholder="類別" formControlName="fcategory" readonly >
+              </md-input-container>
+            </div>
+          </div>
+          <div class="mda-form-group">
+            <div class="mda-form-control">
+              <md-input-container>
+                <input mdInput [ngModel]="detail?.bp_mask_no" placeholder="BP/Mask No." name="bp_mask_no" formControlName="fbp_mask_no" >
+              </md-input-container>
+            </div>
+          </div>
+          <div class="mda-form-group">
+            <div class="mda-form-control">
+              <table><tr><td><md-input-container>
+                  <input mdInput type="number" [ngModel]="detail?.qty" placeholder="數據" formControlName="fqty" required>
+              </md-input-container></td>
+              <td><button type="button" class="btn btn-default btn-xs ripple" >
+                前一天：<input type="text" [ngModel]="((detail.pn!=detail.pre_pn)||(detail.vendor!=detail.pre_vendor))?'diffrent':detail.pre_qty" onfocus="this.blur()"
+                          style="border:none;color:green;width:40px;" formControlName="fpre_qty" >
+              </button></td></tr></table>
+            </div>
+            <label id="confirm_match-error" class="error"
+              [class.hidden]="form.controls.fqty.valid || form.untouched"
+              [class.line-through]="form.controls.fqty.invalid && form.controls.fremark.value" >{{form.controls.fqty.errors | json}}</label>
+          </div>
+          <div class="mda-form-group">
+            <div class="mda-form-control">
+              <md-input-container>
+                <textarea mdInput [ngModel]="detail?.remark" placeholder="備註" formControlName="fremark"
+                  required="{{form.controls.fqty.invalid}}"></textarea>
+              </md-input-container>
+            </div>
+          </div>
+
+    </div>
+    <div class="card-body pt0 pb0">
+      <div class="clearfix">
+        <!--<div class="pull-left">
+          <div class="checkbox c-checkbox">
+            <label>
+              <input type="checkbox" name="agreements" required=""><span class="ion-checkmark-round"></span>I agree with the
+            </label>
+          </div>
+        </div>-->
+        <div class="pull-right mt-sm">
+          <button type="button" class="btn btn-primary btn-flat" (click)="cancel()">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-flat"
+            (click)="save()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- END panel-->
+</form>

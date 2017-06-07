@@ -1,0 +1,46 @@
+<button (click)="save()">Test Http.post</button>
+
+<section class="">
+  <div class="container">
+    <table>
+      <thead>
+        <tr class="header">
+          <th>
+              <div>PLANT</div>
+          </th>
+          <th>
+              <div>SHOP</div>
+          </th>
+          <th>
+              <div>EQUIPMENT</div>
+          </th>
+          <th>
+              <div>CATHODE</div>
+          </th>
+          <th>
+              <div>CATEGORY</div>
+          </th>
+          <th>
+              <div>MATERIALTYPE</div>
+          </th>
+          <th *ngFor="let item of inDaysPeriod" ><div>{{item}}</div></th>
+        </tr>
+      </thead>
+      <tbody>
+              <tr *ngFor="let item of inDataTable">
+          <td>{{item.PLANT}}</td>
+          <td>{{item.SHOP}}</td>
+          <td>{{item.EQUIPMENT}}</td>
+          <td>{{item.CATHODE | uppercase}}</td>
+          <td>{{item.CATEGORY}}</td>
+          <td>{{item.MATERIALTYPE}}</td>
+          <td *ngFor="let day of inDaysPeriod; let i = index">
+              <app-modify-dialog
+                inDisplayIndex={{i}} [inRows]="item" [inDay]="day">
+              </app-modify-dialog>
+          </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

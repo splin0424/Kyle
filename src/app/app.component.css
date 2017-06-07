@@ -1,0 +1,63 @@
+.example-full-width{
+  width: 100%;
+}
+.input-textbox{
+  font-size: 14px;
+  font-family: 'Arial', 'trebuchet MS', 'Lucida sans';
+  text-align: center;
+}
+.m0{
+  font-weight: bold;
+  /*color: #2da9d2;*/
+}
+.query-card{
+  background-color: #C4DBF9;
+  margin:0;
+}
+.query-card-body{
+  padding: 0;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+.div-scrollbar{
+  WIDTH: 100%;
+  HEIGHT: 450px;
+  BACKGROUND-COLOR: #FFFFFF;
+  overflow-y:scroll;
+  SCROLLBAR-FACE-COLOR: #c2d3fc;
+  SCROLLBAR-HIGHLIGHT-COLOR: #c2d3fc;
+  SCROLLBAR-SHADOW-COLOR: BLACK;
+  SCROLLBAR-3DLIGHT-COLOR: #c2d3fc;
+  SCROLLBAR-ARROW-COLOR:#000000;
+  SCROLLBAR-TRACK-COLOR: FFFFFF;
+  SCROLLBAR-DARKSHADOW-COLOR: EAECEC;
+}
+
+
+
+
+.example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
+
+
+.custom-error{
+  color: red;
+}
+
+.hidden{
+  display: none;
+}

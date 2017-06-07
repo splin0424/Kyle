@@ -1,0 +1,50 @@
+.example-form {
+  width: 500px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.div-scrollbar{
+  WIDTH: 100%;
+  HEIGHT: 300px;
+  BACKGROUND-COLOR: #FFFFFF;
+  overflow-y:scroll;
+  SCROLLBAR-FACE-COLOR: #c2d3fc;
+  SCROLLBAR-HIGHLIGHT-COLOR: #c2d3fc;
+  SCROLLBAR-SHADOW-COLOR: BLACK;
+  SCROLLBAR-3DLIGHT-COLOR: #c2d3fc;
+  SCROLLBAR-ARROW-COLOR:#000000;
+  SCROLLBAR-TRACK-COLOR: FFFFFF;
+  SCROLLBAR-DARKSHADOW-COLOR: EAECEC;
+}
+
+.custom-button{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dialog-title{
+  border:none;
+  width:100%;
+  font-weight: bold;
+}
+
+.custom-card{
+  position: relative;
+  padding: 0px 16px 0px 16px;
+}
+
+.custom-error{
+  color: red;
+}
+
+.hidden{
+  display: none;
+}
+
+.line-through{
+  text-decoration: line-through;
+}
+
+

@@ -1,0 +1,9 @@
+.input-textbox{
+  font-size: 16px;
+  font-family: 'Arial', 'trebuchet MS', 'Lucida sans';
+  text-align: center;
+}
+
+.example-full-width{
+  width: 100%;
+}
