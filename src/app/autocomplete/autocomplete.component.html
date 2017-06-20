@@ -12,7 +12,7 @@
 </div>
 <label id="confirm_match-error" class="error custom-error"
   [class.hidden]="form.controls.fpn.untouched || form.controls.fpn.valid" >
-  {{form.controls.fpn.errors | json}}</label>
+  {{form.controls.fpn.errors?.errormsg | json}}</label>
 </div>
 
 

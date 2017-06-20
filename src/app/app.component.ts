@@ -30,14 +30,42 @@ export class AppComponent implements OnInit {
     private _zone: NgZone
   ){}
 
+  public aryShop: any = [
+    {value: 'ARRAY', viewValue: 'ARRAY'},
+            {value: 'CF', viewValue: 'CF'}
+  ];
+  ngOnInit(){
+    var $sele = $('#seleShop');
+    Observable.fromEvent($sele, 'click').subscribe(
+      next => {
+        // console.log(this.defaultQueryParams.plant);
+        if(this.defaultQueryParams.plant == "T000"){
+          this.aryShop = [
+            {value: 'ARRAY', viewValue: 'ARRAY'},
+          ];
+        } else {
+          this.aryShop = [
+            {value: 'ARRAY', viewValue: 'ARRAY'},
+            {value: 'CF', viewValue: 'CF'}
+          ];
+        }
+      }
+    );
+
+    var mDate = moment();
+    var today = mDate.format("YYYY/MM/DD");
+    var day13 = mDate.add(13,'days').format("YYYY/MM/DD");
+    this._finalQueryParams.date = today + ' - ' + day13;
+    // this._finalQueryParams.date = '2017/04/11 - 2017/04/15';
+  }
+
   doSubmit(f: NgForm){
 
   }
 
   doQuery(f: NgForm){
-    // console.log(new Date().getTime());
+    // console.log('query start:' + new Date().getTime());
     this.hasBeenQuery = true;
-    // this.dataTable = null;
     if(f.invalid){
       this.dataTable = null;
       return null;
@@ -50,7 +78,9 @@ export class AppComponent implements OnInit {
     this._dataService.getTFTable(this._finalQueryParams).subscribe(
       (response) => setTimeout(()=> {
                                       this.dataTable = response.json();
-                                      // console.log(this.dataTable);
+                                      if(this.dataTable.length == 0){
+                                        this.onTableFinished();
+                                      }
                                     }, 0)
     );
     this._dataService.getDaysPeriod(this._finalQueryParams.date).subscribe(
@@ -58,20 +88,12 @@ export class AppComponent implements OnInit {
                                       this.daysPeriod = response.json();
                                     }, 0)
     );
-    // console.log(new Date().getTime());
+    //  console.log('query end:' + new Date().getTime());
   }
   doReset(f: NgForm) {
     this.hasBeenQuery = false;
     this.dataTable = null;
     f.reset(this.defaultQueryParams);
-  }
-
-  ngOnInit(){
-    var mDate = moment();
-    var today = mDate.format("YYYY/MM/DD");
-    var day13 = mDate.add(13,'days').format("YYYY/MM/DD");
-    this._finalQueryParams.date = today + ' - ' + day13;
-    // this._finalQueryParams.date = '2017/04/11 - 2017/04/15';
   }
 
   onDateRangePickerChanged($event){

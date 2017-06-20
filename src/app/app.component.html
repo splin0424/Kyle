@@ -36,8 +36,8 @@
                               <p class="m0">廠區</p>
                             </div>
                             <div class="col-md-2 col-sm-8">
-                              <md-select id="select1-1" class="input-textbox"
-                                  [ngModel]="defaultQueryParams.plant" name="plant" #fplant="ngModel" required>
+                              <md-select id="selePlant" class="input-textbox"
+                                  [(ngModel)]="defaultQueryParams.plant" name="plant" #fplant="ngModel" required>
                                 <md-option value="T000">T000</md-option>
                                 <md-option value="T001">T001</md-option>
                                 <md-option value="T002">T002</md-option>
@@ -49,10 +49,13 @@
                               <p class="m0">Shop</p>
                             </div>
                             <div class="col-md-2 col-sm-8">
-                              <md-select id="select1-2" class="input-textbox"
+                              <md-select id="seleShop" class="input-textbox"
                                   [ngModel]="defaultQueryParams.shop" name="shop" #fshop="ngModel" required>
-                                <md-option value="ARRAY">ARRAY</md-option>
-                                <md-option value="CF">CF</md-option>
+                                <!--<md-option value="ARRAY">ARRAY</md-option>
+                                <md-option value="CF">CF</md-option>-->
+                                <md-option *ngFor="let shop of aryShop" [value]="shop.value">
+                                  {{shop.viewValue}}
+                                </md-option>
                               </md-select>
                               <label id="confirm_match-error" class="error custom-error"
                                       [class.hidden]="!hasBeenQuery || (fshop.errors == null)" >{{fshop.errors | json}}</label>
@@ -61,7 +64,7 @@
                               <p class="m0">Category</p>
                             </div>
                             <div class="col-md-2 col-sm-8">
-                              <md-select id="select1-3" class="input-textbox"
+                              <md-select id="seleCategory" class="input-textbox"
                                   [ngModel]="defaultQueryParams.category" name="category" #fcategory="ngModel" required>
                                 <md-option value="Target">Target</md-option>
                                 <md-option value="Mask">Mask</md-option>
@@ -99,7 +102,7 @@
                               </md-input-container>
                             </div>
                             <div class="col-md-2 col-sm-4">
-                              <p class="m0">Vedor</p>
+                              <p class="m0">Vendor</p>
                             </div>
                             <div class="col-md-2 col-sm-8">
                               <md-input-container class="example-full-width">
@@ -172,7 +175,7 @@
 
             </div>
             <!--<div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade">
-              <app-testcomp [inDataTable]="dataTable" [inDaysPeriod]="daysPeriod"></app-testcomp>
+              <app-testcomp></app-testcomp>
             </div>
             <div id="messages" role="tabpanel" aria-labelledby="messages-tab" class="tab-pane fade">
               <h4>Messages view</h4>

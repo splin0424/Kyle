@@ -45,11 +45,12 @@ export class DialogResultDialog implements OnInit{
     this._dataService.getTFPNVendor().subscribe(
       (response) => setTimeout(()=> {
                                       this.dataTable = response.json();
-                                      this.options = this.dataTable.map((obj) => obj.PN+":"+obj.VENDOR);
+                                      // this.options = this.dataTable.map((obj) => obj.PN+":"+obj.VENDOR);
                                     }, 1000)
     );
     this.form = this._fb.group({
       'fpn_hide': [],
+      'fmaterialType': [],
       'fvendor': [],
       'fcategory':[],
       'fbp_mask_no':[],
@@ -79,15 +80,16 @@ export class DialogResultDialog implements OnInit{
     if(($event!=null)&&(typeof $event==='object')){
       this.detail.pn = $event.PN;
       this.detail.vendor = $event.VENDOR;
+      this.detail.materialType = $event.MATERIALTYPE;
     }
   }
   checkInvalid($event){
     //這段是為了避免使用者複製貼上PN，而沒有選取下拉式選單中的PN+Vendor
     //所以只要是PN檢查成功、型態為string，卻不等於現有的PN。認定為複製貼上的Case
-    //(因為string並部會觸發checkVendor)
+    //(因為string並不會觸發checkVendor)
     if(($event.Invalid==false)&&(typeof $event.pn==='string')&&($event.pn!==this.detail.pn)){
       this.detail.vendor='';
-      this.fvendor_error = "請選取料號以帶出供應商";
+      this.fvendor_error = "\"請選取料號以帶出供應商。\"";
     }
     this.pnInvalid=$event.Invalid;
   }
@@ -98,7 +100,7 @@ export class DialogResultDialog implements OnInit{
       return null;
     }
     if(!this.form.controls.fvendor.value){
-      this.fvendor_error = "請選取料號以帶出供應商";
+      this.fvendor_error = "\"請選取料號以帶出供應商。\"";
       return null;
     }
     if(this.form.controls.fqty.invalid){
@@ -118,7 +120,9 @@ export class DialogResultDialog implements OnInit{
       // console.log(this.inQueryParameters);
       // console.log(this.detail)
       this._dataService.storeTF(Object.assign(this.inQueryParameters, this.detail))
-      .subscribe(next => console.log('ok'));
+      .subscribe(
+          next => { console.log(next); }
+        );
 
       this.dialogRef.close(this.detail);
     }

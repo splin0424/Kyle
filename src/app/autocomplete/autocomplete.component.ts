@@ -14,7 +14,7 @@ import { ValidateExist } from "app/shared/in-list-validator";
 export class AutocompleteComponent implements OnInit, OnChanges, DoCheck {
   dataTable: any;
   @Input() inName: string;
-  @Input() inOptions: any;
+  @Input() inOptions: any;  // *** inOptions is a object, it contain: PN, VENDOR, MATERIALTYPE
   @Input() inCurrentOption: string;
 
   stateCtrl: FormControl;
